@@ -1,15 +1,15 @@
-resource "azurerm_resource_group" "example" {
-  name     = "personalexpensesapp-rg"
-  location = "South Central"
+resource "azurerm_resource_group" "speech" {
+  name     = var.resource_group_name
+  location = var.resource_group_location
 }
 
-resource "azurerm_cognitive_account" "example" {
-  name                = "psapp-cs-speech-account"
-  location            = azurerm_resource_group.example.location
-  resource_group_name = azurerm_resource_group.example.name
-  kind                = "Speech"
+resource "azurerm_cognitive_account" "speech" {
+  name                = var.cs_speech_name
+  location            = azurerm_resource_group.speech.location
+  resource_group_name = azurerm_resource_group.speech.name
+  kind                = var.cs_speech_Kind
 
-  sku_name = "S0"
+  sku_name = var.cs_speech_SKU
 
   tags = {
     env = "Dev"
